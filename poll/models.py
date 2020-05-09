@@ -14,12 +14,12 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-def __str__(self):
-    return self.title #print title as string
+    def __str__(self):
+        return self.title #print title as string
 
-@property
-def choices(self):
-    return self.choice_set.all() #to return all the choices
+    @property
+    def choices(self):
+        return self.choice_set.all() #to return all the choices
 
 
 class Choice(models.Model):
@@ -30,6 +30,10 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.text #print text as string
+    
+    @property
+    def votes(self):
+        return self.answer_set.count()
 
 class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -38,7 +42,7 @@ class Answer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.user.first_name +'-'+self.choice.text #print first name and text from choice class as string
+        return self.user.first_name +'-'+ self.choice.text #print first name and text from choice class as string
     
 
 

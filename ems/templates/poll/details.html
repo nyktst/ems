@@ -2,13 +2,13 @@
 
 {% block content %}
    <h1>details</h1>
-   <h3>{{question.title}}</h3>
-   {% for choice in question.choices %}
-       <P> {{choice.text}}</P>
+   <h3>{{questions.title}}</h3>
+   {% for choice in questions.choices %}
+       <P> {{choice.text}}({{choice.votes}})</P>
    {% empty %}
        <p>no choice</p>
    {% endfor %}
-   <p>created on of {{question.created_by.first_name}}</p>
+   <p>created by {{questions.created_by.first_name}}</p>
   
        
 {% endblock content %}
